@@ -1,0 +1,28 @@
+<ion-item-divider color="light" ng-style="{'line-height': '40px'}" no-lines>{{name}} </ion-item-divider>
+<ion-item ng-style="{'line-height': '40px'}" no-lines>
+    <ion-range min="{{min}}" max="{{max}}" [(ngModel)]="counter">
+        <ion-icon range-left small name="timer"></ion-icon>
+        <ion-icon range-right name="timer"></ion-icon>
+    </ion-range>
+</ion-item>
+
+<!-- <ion-grid>
+    <ion-row>
+        <ion-col col-1>
+            {{counter}}
+        </ion-col>
+        <ion-col>
+            <ion-item no-lines>
+                <ion-range min="{{min}}" max="{{max}}" [(ngModel)]="counter" snaps="true" pin="true">
+                    <ion-icon range-left small name="timer"></ion-icon>
+                    <ion-icon range-right name="timer"></ion-icon>
+                </ion-range>
+            </ion-item>
+
+        </ion-col>
+        <ion-col col-1>
+            {{len}}
+        </ion-col>
+    </ion-row>
+<ion-grid>
+-->

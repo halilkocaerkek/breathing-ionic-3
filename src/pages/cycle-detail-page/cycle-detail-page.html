@@ -1,0 +1,15 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>{{item.repeat}} x {{getPattern(item.cycle)}} - {{getTimes(item.cycle)}} - {{getCycleLenght(item.cycle)}} seconds </ion-title>
+    </ion-navbar>
+</ion-header>
+<ion-content>
+    <ion-list>
+        <time-edit name="Repeat" [min]="0" [max]=9 [(counter)]="item.repeat"></time-edit>
+        <time-edit name="Inhale" [min]="0" [max]=9 [(counter)]="item.cycle.inhale" itemLenght="4"></time-edit>
+        <time-edit [min]="0" [max]=9 name="Hold" [(counter)]="item.cycle.hold"></time-edit>
+        <time-edit [min]="0" [max]=9 name="Exhale" [(counter)]="item.cycle.exhale"></time-edit>
+        <time-edit [min]="0" [max]=9 name="Sustain" [(counter)]="item.cycle.sustain"></time-edit>
+
+    </ion-list>
+</ion-content>

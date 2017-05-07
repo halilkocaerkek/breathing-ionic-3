@@ -1,0 +1,81 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>
+            {{ selectedItem.title }}
+        </ion-title>
+    </ion-navbar>
+
+    <ion-row>
+        <ion-col>
+            Repeat
+        </ion-col>
+        <ion-col>
+            Pattern
+        </ion-col>
+        <ion-col>
+            Lenghts
+        </ion-col>
+        <ion-col>
+            Total
+        </ion-col>
+    </ion-row>
+
+</ion-header>
+
+<ion-content>
+    <ion-fab top right edge>
+        <button ion-fab mini (click)="addItem()"><ion-icon name="add"></ion-icon></button>
+    </ion-fab>
+
+    <ion-list>
+
+        <ion-item-sliding no-lines *ngFor="let item of selectedItem.items" (click)="itemTapped($event, { item:item, time: time })">
+            <ion-item no-lines>
+                <ion-row>
+                    <ion-col>
+                        {{item.repeat}}
+                    </ion-col>
+                    <ion-col>
+                        {{getPattern(item.cycle)}}
+                    </ion-col>
+                    <ion-col>
+                        {{getTimes(item.cycle)}}
+                    </ion-col>
+                    <ion-col>
+                        {{ getCycleLenght(item.cycle) }} sec
+                    </ion-col>
+                </ion-row>
+            </ion-item>
+            <ion-item-options side="left">
+                <button ion-button icon-only color="primary" (click)="add($event,item, 1)"> 
+                <ion-icon name="add"></ion-icon>
+
+                </button>
+                <button ion-button icon-only color="secondary" (click)="add($event,item, -1)"> 
+                <ion-icon name="remove"></ion-icon>
+
+                </button>
+            </ion-item-options>
+            <ion-item-options side="right">
+                <button ion-button color="danger" icon-only> 
+                <ion-icon name="close"></ion-icon>
+
+                </button>
+            </ion-item-options>
+        </ion-item-sliding>
+    </ion-list>
+
+
+</ion-content>
+
+<ion-footer class="fixed-footer">
+    <ion-list>
+        <ion-item-divider no-lines color="light" ng-style="{'line-height': '40px'}">Unit Time : {{time}} {{getSecondTitle()}}</ion-item-divider>
+        <ion-item no-lines ng-style="{'line-height': '40px'}">
+            <ion-range [(ngModel)]="time" min=1 max=30 pin="true">
+                <ion-icon range-left small name="timer"></ion-icon>
+                <ion-icon range-right name="timer"></ion-icon>
+            </ion-range>
+        </ion-item>
+    </ion-list>
+</ion-footer>
