@@ -8,14 +8,14 @@
 
 <ion-content>
     <ion-fab top right edge>
-        <button ion-fab mini (click)="addNewProgram()"><ion-icon name="add"></ion-icon></button>
+        <button ion-fab (click)="addNewProgram()"><ion-icon name="add"></ion-icon></button>
     </ion-fab>
 
     <ion-list>
         <ion-item-divider color="light">Predefined Programs</ion-item-divider>
         <ion-item *ngFor="let item of programs   " (click)="itemTapped($event, { item:item })" detail-push>{{item.title}}</ion-item>
         <ion-item-divider color="light">User Defined Programs</ion-item-divider>
-        <ion-item-sliding *ngFor="let item of userPrograms  ">
+        <ion-item-sliding *ngFor="let item of userPrograms">
             <ion-item (click)="itemTapped($event, { item:item } )" detail-push>
                 {{item.title}}
             </ion-item>
@@ -23,6 +23,12 @@
                 <button ion-button color="danger">
         <ion-icon name="close"></ion-icon>
         Remove
+      </button>
+            </ion-item-options>
+            <ion-item-options side="left">
+                <button ion-button color="secondary">
+        <ion-icon name="play"></ion-icon>
+        Play
       </button>
             </ion-item-options>
         </ion-item-sliding>

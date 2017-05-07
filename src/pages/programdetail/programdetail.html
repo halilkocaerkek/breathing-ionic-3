@@ -27,6 +27,7 @@
         <button ion-fab mini (click)="addItem()"><ion-icon name="add"></ion-icon></button>
     </ion-fab>
 
+
     <ion-list>
 
         <ion-item-sliding no-lines *ngFor="let item of selectedItem.items" (click)="itemTapped($event, { item:item, time: time })">
@@ -69,6 +70,9 @@
 </ion-content>
 
 <ion-footer class="fixed-footer">
+    <ion-fab bottom right>
+        <button ion-fab (click)="playProgram()" color="secondary"><ion-icon name="play"></ion-icon></button>
+    </ion-fab>
     <ion-list>
         <ion-item-divider no-lines color="light" ng-style="{'line-height': '40px'}">Unit Time : {{time}} {{getSecondTitle()}}</ion-item-divider>
         <ion-item no-lines ng-style="{'line-height': '40px'}">

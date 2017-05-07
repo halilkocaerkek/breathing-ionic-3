@@ -24,6 +24,7 @@ import {SplashScreen} from '@ionic-native/splash-screen';
 import {TimeEdit} from '../components/time-edit/time-edit' ;
 
 import {LinearGaugeComponent, RadialGaugeComponent} from '../../node_modules/ng-canvas-gauges/component';
+import {UserData} from "../providers/user-data";
 
 @NgModule({
     declarations: [
@@ -57,6 +58,7 @@ import {LinearGaugeComponent, RadialGaugeComponent} from '../../node_modules/ng-
         SplashScreen,
         LoggerService,
         UserContextService,
+           UserData,
         UserService, {
             provide: ErrorHandler,
             useClass: IonicErrorHandler
