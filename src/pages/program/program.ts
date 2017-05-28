@@ -38,7 +38,7 @@ export class ProgramPage {
   }
 
   itemTapped(event, args) {
-    // That's right, we're pushing to ourselves!
+    // That's right, we're pushing to ourselves! x
     this
       .navCtrl
       .push(ProgramDetailPage, args);
