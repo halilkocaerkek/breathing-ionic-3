@@ -30,7 +30,7 @@
 
     <ion-list>
 
-        <ion-item-sliding no-lines *ngFor="let item of selectedItem.items" (click)="itemTapped($event, { item:item, time: time })">
+        <ion-item-sliding no-lines *ngFor="let item of selectedItem.items" (click)="itemTapped($event, { item:item, time: this.selectedItem.timeUnit })">
             <ion-item no-lines>
                 <ion-row>
                     <ion-col>
@@ -48,17 +48,17 @@
                 </ion-row>
             </ion-item>
             <ion-item-options side="left">
-                <button ion-button icon-only color="primary" (click)="add($event,item, 1)"> 
+                <button ion-button icon-only color="primary" (click)="add($event,item, 1)">
                 <ion-icon name="add"></ion-icon>
 
                 </button>
-                <button ion-button icon-only color="secondary" (click)="add($event,item, -1)"> 
+                <button ion-button icon-only color="secondary" (click)="add($event,item, -1)">
                 <ion-icon name="remove"></ion-icon>
 
                 </button>
             </ion-item-options>
             <ion-item-options side="right">
-                <button ion-button color="danger" icon-only> 
+                <button ion-button color="danger" icon-only>
                 <ion-icon name="close"></ion-icon>
 
                 </button>
@@ -76,7 +76,7 @@
     <ion-list>
         <ion-item-divider no-lines color="light" ng-style="{'line-height': '40px'}">Unit Time : {{time}} {{getSecondTitle()}}</ion-item-divider>
         <ion-item no-lines ng-style="{'line-height': '40px'}">
-            <ion-range [(ngModel)]="time" min=1 max=30 pin="true">
+            <ion-range [(ngModel)]="selectedItem.timeUnit" min=1 max=20 pin="true">
                 <ion-icon range-left small name="timer"></ion-icon>
                 <ion-icon range-right name="timer"></ion-icon>
             </ion-range>

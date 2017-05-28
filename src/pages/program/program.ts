@@ -1,40 +1,17 @@
-import {Component} from '@angular/core';
-import {Storage} from '@ionic/storage';
-import {NavController} from 'ionic-angular';
-import {ProgramDetailPage} from '../programdetail/programdetail';
+import { Component } from '@angular/core';
+import { NavController } from 'ionic-angular';
+import { ProgramDetailPage } from '../programdetail/programdetail';
+import { ProgramModel } from "./../../app/models/program-model";
 
-import {ProgramModel} from "./../../app/models/program-model";
-
-@Component({selector: 'page-program', templateUrl: 'program.html'})
+@Component({ selector: 'page-program', templateUrl: 'program.html' })
 export class ProgramPage {
 
-  programs : ProgramModel[];
-  userPrograms : ProgramModel[];
+  programs: ProgramModel[];
+  userPrograms: ProgramModel[];
 
-  constructor(public navCtrl : NavController, public storage : Storage) {
-    storage
-      .ready()
-      .then(() => {
-        storage
-          .ready()
-          .then(() => {
-            this
-              .storage
-              .get('programs')
-              .then((p) => {
-                this.programs = p;
-              })
-              .catch((c) => {});
+  constructor(public navCtrl: NavController) {
 
-            this
-              .storage
-              .get('userPrograms')
-              .then((p) => {
-                this.userPrograms = p;
-              })
-              .catch((c) => {});
-          });
-      });
+    this.userPrograms = [];
   }
 
   itemTapped(event, args) {
@@ -44,15 +21,11 @@ export class ProgramPage {
       .push(ProgramDetailPage, args);
   }
 
-  addNewProgram()
-  {
+  addNewProgram() {
     this
       .userPrograms
       .push(new ProgramModel("New User Program"));
 
-    this
-      .storage
-      .set('userPrograms', this.userPrograms);
   }
 
 }
