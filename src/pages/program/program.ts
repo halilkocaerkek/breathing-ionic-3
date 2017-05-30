@@ -10,12 +10,12 @@ export class ProgramPage {
 
   programs: ProgramModel[];
   userPrograms: ProgramModel[];
-  Data: UserData;
 
-  constructor(public navCtrl: NavController, private _UserData: UserData, public alertCtrl: AlertController) {
-    this.Data = _UserData;
-    this.programs = this.Data.programs;
-    this.userPrograms = this.Data.userPrograms;
+
+  constructor(public navCtrl: NavController, public UserData: UserData, public alertCtrl: AlertController) {
+
+    this.programs = this.UserData.programs;
+    this.userPrograms = this.UserData.userPrograms;
   }
 
   itemTapped(event, args) {
@@ -37,17 +37,13 @@ export class ProgramPage {
         {
           text: 'Remove',
           handler: () => {
-            let index = this.userPrograms.indexOf(item);
-            if (index > -1) {
-              this.userPrograms.splice(index, 1);
-            }
+            this.UserData.removeProgram(item);
           }
         }
       ]
     });
     alert.present();
   }
-
 
   addNewProgram() {
     let prompt = this.alertCtrl.create({
@@ -69,7 +65,7 @@ export class ProgramPage {
         {
           text: 'Save',
           handler: data => {
-            this.Data.addNewUserProgram(data.title);
+            this.UserData.addNewUserProgram(data.title);
           }
         }
       ]

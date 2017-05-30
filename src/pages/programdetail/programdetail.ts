@@ -66,7 +66,7 @@ export class ProgramDetailPage {
     removeItem(item) {
     let alert = this.alertCtrl.create({
       title: 'Confirm delete',
-      message: 'Do you want to remove this program?',
+      message: 'Do you want to remove this item?',
       buttons: [
         {
           text: 'Cancel',
