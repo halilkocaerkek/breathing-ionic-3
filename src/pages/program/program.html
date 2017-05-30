@@ -7,6 +7,7 @@
 </ion-header>
 
 <ion-content>
+
     <ion-fab top right edge>
         <button ion-fab (click)="addNewProgram()"><ion-icon name="add"></ion-icon></button>
     </ion-fab>
@@ -20,7 +21,7 @@
                 {{item.title}}
             </ion-item>
             <ion-item-options side="right">
-                <button ion-button color="danger">
+                <button ion-button color="danger" (click)="removeProgram(item)">
         <ion-icon name="close"></ion-icon>
         Remove
       </button>

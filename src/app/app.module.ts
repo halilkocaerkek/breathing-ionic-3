@@ -5,9 +5,6 @@ import {IonicStorageModule} from '@ionic/storage';
 
 import {MyApp} from './app.component';
 
-import {LoggerService} from './logger.service';
-import {UserContextService} from './user-context.service';
-import {UserService} from './user.service';
 // Pages
 import {AboutPage} from '../pages/about/about';
 import {ProgramPage} from '../pages/program/program';
@@ -20,7 +17,7 @@ import {TabsPage} from '../pages/tabs/tabs';
 import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
 
-// components 
+// components
 import {TimeEdit} from '../components/time-edit/time-edit' ;
 
 import {LinearGaugeComponent, RadialGaugeComponent} from '../../node_modules/ng-canvas-gauges/component';
@@ -56,10 +53,9 @@ import {UserData} from "../providers/user-data";
     providers: [
         StatusBar,
         SplashScreen,
-        LoggerService,
-        UserContextService,
+
            UserData,
-        UserService, {
+         {
             provide: ErrorHandler,
             useClass: IonicErrorHandler
         }

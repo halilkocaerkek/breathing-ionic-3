@@ -3,6 +3,7 @@
         <ion-title>
             {{ selectedItem.title }}
         </ion-title>
+
     </ion-navbar>
 
     <ion-row>
@@ -30,8 +31,8 @@
 
     <ion-list>
 
-        <ion-item-sliding no-lines *ngFor="let item of selectedItem.items" (click)="itemTapped($event, { item:item, time: this.selectedItem.timeUnit })">
-            <ion-item no-lines>
+        <ion-item-sliding no-lines *ngFor="let item of selectedItem.items">
+            <ion-item no-lines detail-push (click)="itemTapped($event, { item:item, time: this.selectedItem.timeUnit })">
                 <ion-row>
                     <ion-col>
                         {{item.repeat}}
@@ -58,7 +59,7 @@
                 </button>
             </ion-item-options>
             <ion-item-options side="right">
-                <button ion-button color="danger" icon-only>
+                <button ion-button color="danger" icon-only (click)="removeItem(item)">
                 <ion-icon name="close"></ion-icon>
 
                 </button>
@@ -70,8 +71,8 @@
 </ion-content>
 
 <ion-footer class="fixed-footer">
-    <ion-fab bottom right>
-        <button ion-fab (click)="playProgram()" color="secondary"><ion-icon name="play"></ion-icon></button>
+    <ion-fab right edge>
+        <button ion-fab mini (click)="playProgram()" color="secondary"><ion-icon name="play"></ion-icon></button>
     </ion-fab>
     <ion-list>
         <ion-item-divider no-lines color="light" ng-style="{'line-height': '40px'}">Unit Time : {{time}} {{getSecondTitle()}}</ion-item-divider>

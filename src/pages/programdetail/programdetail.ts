@@ -1,6 +1,6 @@
 import { HomePage } from './../home/home';
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, AlertController } from 'ionic-angular';
 import { ProgramModel, ProgramItem } from "./../../app/models/program-model";
 import { CycleModel } from "./../../app/models/cycle-model";
 import { CycleDetailPage } from '../cycle-detail-page/cycle-detail-page';
@@ -16,7 +16,7 @@ export class ProgramDetailPage {
   key = "";
   path = "";
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController ) {
     // If we navigated to this page, we will have an item available as a nav param
 
     this.selectedItem = navParams.get('item');
@@ -61,5 +61,31 @@ export class ProgramDetailPage {
     this
       .navCtrl
       .push(CycleDetailPage, args);
+  }
+
+    removeItem(item) {
+    let alert = this.alertCtrl.create({
+      title: 'Confirm delete',
+      message: 'Do you want to remove this program?',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Remove',
+          handler: () => {
+            let index = this.selectedItem.items.indexOf(item);
+            if (index > -1) {
+              this.selectedItem.items.splice(index, 1);
+            }
+          }
+        }
+      ]
+    });
+    alert.present();
   }
 }
