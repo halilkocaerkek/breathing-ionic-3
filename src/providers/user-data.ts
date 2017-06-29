@@ -63,7 +63,7 @@ export class UserData {
   }
 
   initPrograms() {
-
+    this.programs = [];
     this.programs.push(new ProgramModel("Easy"));
     this.programs.push(new ProgramModel("Normal"));
     this.programs.push(new ProgramModel("Hard"));
@@ -74,6 +74,7 @@ export class UserData {
   }
 
   initUserPrograms() {
+    this.userPrograms = [];
     this.userPrograms.push(new ProgramModel("User Defined Programs"));
     this.userPrograms.push(new ProgramModel("Test Program"));
     this.userPrograms.push(new ProgramModel("UDP 2"));

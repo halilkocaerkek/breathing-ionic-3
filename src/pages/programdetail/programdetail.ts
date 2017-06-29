@@ -35,7 +35,7 @@ export class ProgramDetailPage {
     this
       .selectedItem
       .items
-      .push(new ProgramItem(5, new CycleModel("new", 4, 7, 8, 4)))
+      .push(new ProgramItem(5, new CycleModel("new", 4, 7, 8, 0)))
   }
 
   getPattern(c: CycleModel) {
