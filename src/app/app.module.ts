@@ -1,6 +1,6 @@
 ﻿import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
+import { IonicApp, IonicModule, IonicErrorHandler, Tabs } from 'ionic-angular';
 import { IonicStorageModule } from '@ionic/storage';
 
 import { MyApp } from './app.component';
@@ -53,6 +53,7 @@ import { UserData } from "../providers/user-data";
   providers: [
     StatusBar,
     SplashScreen,
+    Tabs,
     UserData,
     {
       provide: ErrorHandler,

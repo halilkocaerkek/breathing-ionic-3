@@ -10,6 +10,11 @@ export class CycleModel {
   public exhale: number;
   public sustain: number;
 
+   inhaleMin: number;
+   holdMin: number;
+   exhaleMin: number;
+   sustainMin: number;
+
   constructor(_title: string, _inhale: number, _hold: number, _exhale: number, _sustain: number) {
 
     this.title = _title;
@@ -27,19 +32,23 @@ export class CycleModel {
   public static getTimes(c: CycleModel, t: number) {
     let s = "";
     if (c.inhale > 0) {
-      s += (c.inhale * t).toString();
+      c.inhaleMin = c.inhale * t;
+      s += c.inhaleMin.toString();
     }
 
     if (c.hold > 0) {
-      s += ":" + (c.hold * t).toString();
+      c.holdMin = c.hold * t;
+      s += ":" + c.holdMin.toString();
     }
 
     if (c.exhale > 0) {
-      s += ":" + (c.exhale * t).toString();
+      c.exhaleMin = c.exhale * t ;
+      s += ":" + c.exhaleMin.toString();
     }
 
     if (c.sustain > 0) {
-      s += ":" + (c.sustain * t).toString();
+      c.sustainMin = c.sustain * t;
+      s += ":" + c.sustainMin.toString();
     }
 
     return s;

@@ -1,18 +1,16 @@
 import { HomePage } from './../home/home';
 import { Component } from '@angular/core';
-import { NavController, NavParams, AlertController } from 'ionic-angular';
+import { NavController, NavParams, AlertController, Tabs } from 'ionic-angular';
 import { ProgramModel, ProgramItem } from "./../../app/models/program-model";
 import { CycleModel } from "./../../app/models/cycle-model";
 import { CycleDetailPage } from '../cycle-detail-page/cycle-detail-page';
-
+ 
 
 @Component({ selector: 'page-programdetail', templateUrl: 'programdetail.html' })
 export class ProgramDetailPage {
 
   selectedItem: ProgramModel;
   count: number = 5;
-
-
   key = "";
   path = "";
 
@@ -26,10 +24,16 @@ export class ProgramDetailPage {
   }
 
   playProgram() {
-    this
+    /* this
       .navCtrl
-      .push(HomePage, { item: this.selectedItem });
+      .push(HomePage, { item: this.selectedItem }); */
+      this.selectTab(0) ;
   }
+
+  selectTab(index: number) {
+        var t: Tabs = this.navCtrl.parent;
+        t.select(index, this.navCtrl) ;
+    }
 
   addItem() {
     this

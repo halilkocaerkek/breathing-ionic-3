@@ -4,13 +4,9 @@ import { Storage } from '@ionic/storage';
 
 @Injectable()
 export class UserData {
-
   programs: ProgramModel[] = [];
   userPrograms: ProgramModel[] = [];
-
   constructor(public storage: Storage) {
-
-
     storage
       .ready()
       .then(() => {
@@ -39,9 +35,6 @@ export class UserData {
             this.initUserPrograms();
           });
       });
-
-
-
   }
 
   save() {
@@ -83,5 +76,4 @@ export class UserData {
       .storage
       .set('userPrograms', this.userPrograms);
   }
-
 }

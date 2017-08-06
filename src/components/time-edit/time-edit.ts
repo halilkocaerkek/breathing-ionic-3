@@ -1,11 +1,5 @@
 import {Component, Input, Output, EventEmitter} from '@angular/core';
 
-/**
- * Generated class for the TimeEdit component.
- *
- * See https://angular.io/docs/ts/latest/api/core/index/ComponentMetadata-class.html
- * for more info on Angular Components.
- */
 @Component({selector: 'time-edit', templateUrl: 'time-edit.html'})
 export class TimeEdit {
 
