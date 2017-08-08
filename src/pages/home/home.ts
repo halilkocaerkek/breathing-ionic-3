@@ -30,6 +30,7 @@ export class HomePage {
   sustainMin: number;
 
   cycleIndex = 0;
+  repeatCount = 0;
 
   highlights: string = '[ {"from": 0, "to": 60, "color": "rgba(100,120, 60, .3)"}, {"from": 60, "to": 12' +
   '0, "color": "rgba(255, 0, 0, .3)"},{"from": 120, "to": 260, "color": "rgba(0,120' +
@@ -43,10 +44,9 @@ export class HomePage {
   ) {
 
     events.subscribe('program:selected', (_selectedProgram) => {
-
       this.selectedProgram = _selectedProgram;
+      userData.setSelectedProgram(this.selectedProgram);
       this.initScreen();
-
     });
 
     if (this.selectedProgram) {
@@ -55,12 +55,12 @@ export class HomePage {
   }
 
   initScreen() {
-
     this.programTitle = this.selectedProgram.title;
     this.selectedCycle = this.selectedProgram.items[0].cycle;
     this.highlights = CycleModel.gethighlights(this.selectedCycle, this.selectedProgram.timeUnit);
 
     this.activeCycle = this.selectedCycle;
+    this.cycleIndex = 0;
     this.setScycle();
   }
 
@@ -107,7 +107,6 @@ export class HomePage {
     }
 
     if (this.value > 360) {
-
       this.value = 0;
       this.cycleCount++;
     }
@@ -119,16 +118,13 @@ export class HomePage {
   }
   stop() {
     clearInterval(this.timer);
-    this.initScreen()
-
+    this.initScreen();
   }
 
   completeCycle() {
+    this.repeatCount--;
 
-    if (this.selectedProgram.items[this.cycleIndex].repeat > 0) {
-      this.selectedProgram.items[this.cycleIndex].repeat--;
-    }
-    if (this.selectedProgram.items[this.cycleIndex].repeat <= 0) {
+    if (this.repeatCount <= 0) {
       this.cycleIndex++;
 
       if (this.cycleIndex >= this.selectedProgram.items.length) {
@@ -153,6 +149,7 @@ export class HomePage {
     this.activeStep = this.stepInhale;
     this.title = "Inhale";
     this.value = 0;
+    this.repeatCount = this.selectedProgram.items[this.cycleIndex].repeat;
     this.cycleTitle = this.activeCycle.title + " - " + this.getPattern(this.activeCycle) + " - " + this.getTimes(this.activeCycle);
   }
 

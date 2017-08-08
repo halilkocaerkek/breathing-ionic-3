@@ -13,7 +13,7 @@ export class ProgramDetailPage {
   count: number = 5;
   key = "";
   path = "";
-    UserData: UserData;
+ 
 
   constructor(
     public navCtrl: NavController, 
@@ -25,7 +25,7 @@ export class ProgramDetailPage {
     // If we navigated to this page, we will have an item available as a nav param
 
     this.selectedItem = navParams.get('item');
-    this.UserData = UserData ;
+ 
   }
   add(event, item, val: number) {
     item.repeat += val;
@@ -42,7 +42,7 @@ export class ProgramDetailPage {
 
   selectTab(index: number) {
         var t: Tabs = this.navCtrl.parent;
-        this.UserData.setSelectedProgram(this.selectedItem) ;
+
         t.select(index, this.navCtrl) ;
     }
 

@@ -11,10 +11,15 @@ export class ProgramModel {
     public timeUnit: number = 3;
     constructor(public title: string) {
         this.items = [];
-        this.addItem(new ProgramItem(5, new CycleModel("warm", 4, 4, 4, 1)));
-        this.addItem(new ProgramItem(8, new CycleModel("main", 4, 7, 8, 1)));
-        this.addItem(new ProgramItem(4, new CycleModel("relax", 4, 7, 8, 1)));
-        this.addItem(new ProgramItem(3, new CycleModel("end", 4, 7, 8, 1)));
+        this.addItem(new ProgramItem(1, new CycleModel("cycle 1", 1, 1, 1, 1)));
+        this.addItem(new ProgramItem(1, new CycleModel("cycle 2", 1, 1, 1, 1)));
+        this.addItem(new ProgramItem(1, new CycleModel("cycle 3", 1, 1, 1, 1)));
+        this.addItem(new ProgramItem(1, new CycleModel("cycle 4", 1, 1, 1, 1)));
+
+        //this.addItem(new ProgramItem(5, new CycleModel("warm", 4, 4, 4, 1)));
+        //this.addItem(new ProgramItem(8, new CycleModel("main", 4, 7, 8, 1)));
+        //this.addItem(new ProgramItem(4, new CycleModel("relax", 4, 7, 8, 1)));
+        //this.addItem(new ProgramItem(3, new CycleModel("end", 4, 7, 8, 1)));
     }
 
     public addNew() {

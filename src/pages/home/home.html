@@ -8,7 +8,7 @@
 
     <ion-list>
         <ion-item-divider no-lines color="light">Program : {{programTitle}} </ion-item-divider>
-        <ion-item-divider no-lines color="light">Cycle : {{cycleTitle}} </ion-item-divider>
+        <ion-item-divider no-lines color="light">Cycle : {{cycleTitle}} - Repeat : {{repeatCount}} </ion-item-divider>
 
         <ion-item no-lines>
             <!--
@@ -24,9 +24,14 @@
         </ion-item>
 
         <ion-item no-lines>
-
-            <button ion-button (click)="start()">Start</button>
-            <button ion-button (click)="stop()">Stop</button>
+            <ion-row>
+                <ion-col>
+                    <button ion-button (click)="start()" color="default" block outline>Start</button>
+                </ion-col>
+                <ion-col>
+                    <button ion-button (click)="stop()" color="danger" block outline>Stop</button>
+                </ion-col>
+            </ion-row>
         </ion-item>
         <ion-item no-lines>
             <ion-row>
@@ -45,9 +50,10 @@
             </ion-row>
         </ion-item>
         <ion-item no-lines *ngIf="selectedProgram">
-            <ion-row *ngFor="let item of selectedProgram.items">
+            <ion-row *ngFor="let item of selectedProgram.items; let i = index">
                 <ion-col>
                     {{item.repeat}}
+                    <span *ngIf="index == cycleIndex">{{repeatCount}}</span>
                 </ion-col>
                 <ion-col>
                     {{getPattern(item.cycle)}}

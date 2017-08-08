@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { ProgramModel } from "../app/models/program-model";
 import { Storage } from '@ionic/storage';
+import { Events } from "ionic-angular";
 
 @Injectable()
 export class UserData {
   programs: ProgramModel[] = [];
   userPrograms: ProgramModel[] = [];
-  selectedProgram : ProgramModel ;
-  constructor(public storage: Storage) {
+  selectedProgram: ProgramModel;
+  constructor(public storage: Storage,public events: Events) {
     storage
       .ready()
       .then(() => {
@@ -35,12 +36,13 @@ export class UserData {
           .catch((c) => {
             this.initUserPrograms();
           });
-            this
+        this
           .storage
           .get('selectedProgram')
           .then((p) => {
-            this.selectedProgram = p; 
-          }) ;
+            this.selectedProgram = p;
+            this.events.publish('program:selected', this.selectedProgram );
+          });
       });
   }
 
@@ -49,14 +51,17 @@ export class UserData {
     this.storage.set('userPrograms', this.userPrograms);
   }
 
-  setSelectedProgram(selectedProgram : ProgramModel)
-  {
+  setSelectedProgram(selectedProgram: ProgramModel) {
     this.selectedProgram = selectedProgram;
-    this.storage.set("selectedProgram", selectedProgram);
+    this.storage
+      .ready()
+      .then(() => {
+        this.storage.set("selectedProgram", selectedProgram);
+        
+      });
   }
 
-  getSelectedProgram()
-  {
+  getSelectedProgram() {
     return this.selectedProgram;
   }
 
