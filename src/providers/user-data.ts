@@ -6,6 +6,7 @@ import { Storage } from '@ionic/storage';
 export class UserData {
   programs: ProgramModel[] = [];
   userPrograms: ProgramModel[] = [];
+  selectedProgram : ProgramModel ;
   constructor(public storage: Storage) {
     storage
       .ready()
@@ -34,12 +35,29 @@ export class UserData {
           .catch((c) => {
             this.initUserPrograms();
           });
+            this
+          .storage
+          .get('selectedProgram')
+          .then((p) => {
+            this.selectedProgram = p; 
+          }) ;
       });
   }
 
   save() {
     this.storage.set('programs', this.programs);
     this.storage.set('userPrograms', this.userPrograms);
+  }
+
+  setSelectedProgram(selectedProgram : ProgramModel)
+  {
+    this.selectedProgram = selectedProgram;
+    this.storage.set("selectedProgram", selectedProgram);
+  }
+
+  getSelectedProgram()
+  {
+    return this.selectedProgram;
   }
 
   removeProgram(item) {

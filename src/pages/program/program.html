@@ -13,14 +13,16 @@
     </ion-fab>
 
     <ion-list class="notifications">
-        <ion-item-divider color="light">Predefined Programs</ion-item-divider>
-        <ion-item *ngFor="let item of programs   " (click)="itemTapped($event, { item:item })" detail-push>{{item.title}}</ion-item>
-        <ion-item-divider color="light">User Defined Programs</ion-item-divider>
-        <ion-item-sliding  class="notifications" *ngFor="let item of userPrograms">
-            <ion-item (click)="itemTapped($event, { item:item } )" detail-push>
+        <ion-item-divider no-lines color="light">Predefined Programs</ion-item-divider>
+        <ion-item no-lines *ngFor="let item of programs   " (click)="itemTapped($event, { item:item })" detail-push>{{item.title}}
+
+        </ion-item>
+        <ion-item-divider no-lines color="light">User Defined Programs</ion-item-divider>
+        <ion-item-sliding no-lines class="items" *ngFor="let item of userPrograms">
+            <ion-item no-lines (click)="itemTapped($event, { item:item } )" detail-push>
                 {{item.title}}
             </ion-item>
-            <ion-item-options side="right">
+            <ion-item-options no-lines side="right">
                 <button ion-button color="danger" (click)="removeProgram(item)">
         <ion-icon name="close"></ion-icon>
         Remove

@@ -10,7 +10,8 @@ page-program {
         h2 {
             font-size: 16px;
         }
-        ion-grid, ion-col {
+        ion-grid,
+        ion-col {
             padding: 0;
         }
     }
@@ -19,5 +20,15 @@ page-program {
             color: #93a0b3;
             margin-bottom: 0px;
         }
+    }
+    ion-content {}
+    .item {
+        background: transparent;
+    }
+    .items {
+        background: transparent;
+    }
+    .button-effect {
+        color: red;
     }
 }

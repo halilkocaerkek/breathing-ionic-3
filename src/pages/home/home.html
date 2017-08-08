@@ -7,10 +7,10 @@
 <ion-content>
 
     <ion-list>
-        <ion-item-divider color="light">Program : {{programTitle}} </ion-item-divider>
-        <ion-item-divider color="light">Cycle : {{cycleTitle}} </ion-item-divider>
+        <ion-item-divider no-lines color="light">Program : {{programTitle}} </ion-item-divider>
+        <ion-item-divider no-lines color="light">Cycle : {{cycleTitle}} </ion-item-divider>
 
-        <ion-item>
+        <ion-item no-lines>
             <!--
             <radial-gauge id="radialG" width="300" height="300" [attr.value]="value" [attr.highlights]="highlights" min-value="0" max-value="360" ticks-angle="360" bar-width="20" bar-shadow="1" color-bar-progress="rgba(200,50,50,.75)" color-bar="#eaa" border-shadow-width="0"
                 border-inner-width="0" border-outer-width="0" border-middle-width="0" highlights="false" value-box-stroke="0" color-value-box-shadow="0" value-box-border-radius="0" value-text-shadow="0" color-value-box-background="transparent" needle="false"></radial-gauge>
@@ -23,12 +23,12 @@
 
         </ion-item>
 
-        <ion-item>
+        <ion-item no-lines>
 
             <button ion-button (click)="start()">Start</button>
             <button ion-button (click)="stop()">Stop</button>
         </ion-item>
-        <ion-item>
+        <ion-item no-lines>
             <ion-row>
                 <ion-col>
                     Repeat
@@ -60,7 +60,7 @@
                 </ion-col>
             </ion-row>
         </ion-item>
-        <ion-item>
+        <ion-item no-lines>
             <ion-row>
                 <ion-col>
                     İnhale
@@ -77,7 +77,7 @@
                 </ion-col>
             </ion-row>
         </ion-item>
-        <ion-item>
+        <ion-item no-lines>
             <ion-row>
                 <ion-col>
                     Exhale

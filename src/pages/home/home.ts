@@ -1,6 +1,6 @@
 
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, Events } from 'ionic-angular';
 import { UserData } from "../../providers/user-data";
 import { ProgramModel } from "../../app/models/program-model";
 import { CycleModel } from '../../app/models/cycle-model';
@@ -35,26 +35,34 @@ export class HomePage {
   '0, "color": "rgba(255, 0, 0, .3)"},{"from": 120, "to": 260, "color": "rgba(0,120' +
   ', 255, .3)"}, {"from": 260, "to": 360, "color": "rgba(60, 0, 0, .3)"} ]';
 
-  constructor(public navCtrl: NavController, public userData: UserData, public navParams: NavParams) {
+  constructor(
+    public navCtrl: NavController,
+    public userData: UserData,
+    public navParams: NavParams,
+    public events: Events
+  ) {
 
-    let _item = navParams.get('item')
-    if (_item) {
-      this.selectedProgram = _item;
+    events.subscribe('program:selected', (_selectedProgram) => {
 
-    }
+      this.selectedProgram = _selectedProgram;
+      this.initScreen();
+
+    });
 
     if (this.selectedProgram) {
-    //  this.selectedProgram = new ProgramModel("New User Program");
-   
+      this.initScreen();
+    }
+  }
+
+  initScreen() {
+
+    this.programTitle = this.selectedProgram.title;
     this.selectedCycle = this.selectedProgram.items[0].cycle;
     this.highlights = CycleModel.gethighlights(this.selectedCycle, this.selectedProgram.timeUnit);
 
     this.activeCycle = this.selectedCycle;
     this.setScycle();
-    }
   }
-
-  
 
   // gaugue 360 lık bir cycle alıyor.
   // ben toplam cycle süresini hesaplayıp, buna göre 1 birime karşılık gelen ms değerini kullanmalıyım.
@@ -111,25 +119,27 @@ export class HomePage {
   }
   stop() {
     clearInterval(this.timer);
-    this.value = 0;
+    this.initScreen()
+
   }
 
   completeCycle() {
-    this.setScycle();
+
     if (this.selectedProgram.items[this.cycleIndex].repeat > 0) {
       this.selectedProgram.items[this.cycleIndex].repeat--;
     }
     if (this.selectedProgram.items[this.cycleIndex].repeat <= 0) {
       this.cycleIndex++;
 
-      if(this.cycleIndex >= this.selectedProgram.items.length)
-      {
+      if (this.cycleIndex >= this.selectedProgram.items.length) {
         alert("Program Completed..");
         this.stop();
         return;
       }
 
       this.selectedCycle = this.selectedProgram.items[this.cycleIndex].cycle;
+      this.activeCycle = this.selectedProgram.items[this.cycleIndex].cycle;
+      this.setScycle();
     }
 
   }
@@ -143,6 +153,7 @@ export class HomePage {
     this.activeStep = this.stepInhale;
     this.title = "Inhale";
     this.value = 0;
+    this.cycleTitle = this.activeCycle.title + " - " + this.getPattern(this.activeCycle) + " - " + this.getTimes(this.activeCycle);
   }
 
   getPattern(c: CycleModel) {

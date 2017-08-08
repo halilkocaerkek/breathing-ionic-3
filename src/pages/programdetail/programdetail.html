@@ -30,8 +30,7 @@
 
 
     <ion-list>
-
-        <ion-item-sliding no-lines *ngFor="let item of selectedItem.items">
+        <ion-item-sliding class="items" no-lines *ngFor="let item of selectedItem.items">
             <ion-item no-lines detail-push (click)="itemTapped($event, { item:item, time: this.selectedItem.timeUnit })">
                 <ion-row>
                     <ion-col>

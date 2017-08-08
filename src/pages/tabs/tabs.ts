@@ -6,7 +6,7 @@ import { HomePage } from '../home/home';
 import { Tabs } from "ionic-angular";
 
 
-@Component({ templateUrl: 'tabs.html' })
+@Component({ templateUrl: 'tabs.html', selector: 'page-tabs' })
 export class TabsPage {
 
   tab1Root = HomePage;

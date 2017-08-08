@@ -1,4 +1,21 @@
- 
-page-home {
-    background-color: map-get($colors, secondary);
-}
+ page-home {
+     ion-content {
+         background: $background
+     }
+     .list {
+         background: transparent;
+     }
+     .item {
+         background: transparent;
+     }
+     .row,
+     .col {
+         background: transparent;
+     }
+     .label {
+         background: transparent;
+     }
+     .items {
+         background: transparent;
+     }
+ }

@@ -1,10 +1,10 @@
-import { HomePage } from './../home/home';
 import { Component } from '@angular/core';
-import { NavController, NavParams, AlertController, Tabs } from 'ionic-angular';
+import { NavController, NavParams, AlertController, Tabs, Events } from 'ionic-angular';
 import { ProgramModel, ProgramItem } from "./../../app/models/program-model";
 import { CycleModel } from "./../../app/models/cycle-model";
 import { CycleDetailPage } from '../cycle-detail-page/cycle-detail-page';
- 
+import { UserData } from "../../providers/user-data";
+
 
 @Component({ selector: 'page-programdetail', templateUrl: 'programdetail.html' })
 export class ProgramDetailPage {
@@ -13,11 +13,19 @@ export class ProgramDetailPage {
   count: number = 5;
   key = "";
   path = "";
+    UserData: UserData;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController ) {
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams, 
+    public alertCtrl: AlertController,  
+    UserData: UserData, 
+    public events: Events
+  ) {
     // If we navigated to this page, we will have an item available as a nav param
 
     this.selectedItem = navParams.get('item');
+    this.UserData = UserData ;
   }
   add(event, item, val: number) {
     item.repeat += val;
@@ -28,10 +36,13 @@ export class ProgramDetailPage {
       .navCtrl
       .push(HomePage, { item: this.selectedItem }); */
       this.selectTab(0) ;
+
+      this.events.publish('program:selected', this.selectedItem );
   }
 
   selectTab(index: number) {
         var t: Tabs = this.navCtrl.parent;
+        this.UserData.setSelectedProgram(this.selectedItem) ;
         t.select(index, this.navCtrl) ;
     }
 
@@ -39,7 +50,7 @@ export class ProgramDetailPage {
     this
       .selectedItem
       .items
-      .push(new ProgramItem(5, new CycleModel("new", 4, 7, 8, 0)))
+      .push(new ProgramItem(5, new CycleModel("new", 1, 1, 1, 1)))
   }
 
   getPattern(c: CycleModel) {
