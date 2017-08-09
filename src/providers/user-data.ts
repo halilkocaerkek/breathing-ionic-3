@@ -8,7 +8,7 @@ export class UserData {
   programs: ProgramModel[] = [];
   userPrograms: ProgramModel[] = [];
   selectedProgram: ProgramModel;
-  constructor(public storage: Storage,public events: Events) {
+  constructor(public storage: Storage, public events: Events) {
     storage
       .ready()
       .then(() => {
@@ -41,7 +41,9 @@ export class UserData {
           .get('selectedProgram')
           .then((p) => {
             this.selectedProgram = p;
-            this.events.publish('program:selected', this.selectedProgram );
+            if (p) {
+              this.events.publish('program:selected', this.selectedProgram);
+            }
           });
       });
   }
@@ -57,7 +59,7 @@ export class UserData {
       .ready()
       .then(() => {
         this.storage.set("selectedProgram", selectedProgram);
-        
+
       });
   }
 
