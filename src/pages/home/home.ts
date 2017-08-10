@@ -44,9 +44,11 @@ export class HomePage {
   ) {
 
     events.subscribe('program:selected', (_selectedProgram) => {
-      this.selectedProgram = _selectedProgram;
-      userData.setSelectedProgram(this.selectedProgram);
-      this.initScreen();
+      if (_selectedProgram) {
+        this.selectedProgram = _selectedProgram;
+        userData.setSelectedProgram(this.selectedProgram);
+        this.initScreen();
+      }
     });
 
     if (this.selectedProgram) {
