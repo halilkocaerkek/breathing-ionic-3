@@ -82,19 +82,19 @@ export class CycleModel {
 
     let from : number = 0;
     let to : number = c.inhale * ratio ;
-    highlights.push(this.gethighlight( from, to, "red"))
+    highlights.push(this.gethighlight( from, to, "#66bb6a"))
 
     from = to;
     to = from + c.hold * ratio;
-    highlights.push(this.gethighlight(from, to, "yellow"));
+    highlights.push(this.gethighlight(from, to, "#ff5722"));
 
     from = to;
     to = from + c.exhale * ratio;
-    highlights.push(this.gethighlight(from,to, "blue"));
+    highlights.push(this.gethighlight(from,to, "#29b6f6"));
 
     from = to;
     to = from + c.sustain * ratio;
-    highlights.push(this.gethighlight(from, to, "green"));
+    highlights.push(this.gethighlight(from, to, "#bdbdbd"));
 
 
     return JSON.stringify(highlights);
