@@ -1,9 +1,10 @@
 
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { NavController, NavParams, Events } from 'ionic-angular';
 import { UserData } from "../../providers/user-data";
 import { ProgramModel } from "../../app/models/program-model";
 import { CycleModel } from '../../app/models/cycle-model';
+//import { LinearGaugeComponent, RadialGaugeComponent } from '../../../node_modules/ng-canvas-gauges/component';
 
 @Component({ selector: 'page-home', templateUrl: 'home.html' })
 export class HomePage {
@@ -29,6 +30,8 @@ export class HomePage {
   exhaleMin: number;
   sustainMin: number;
 
+  animationDuration : number;
+
   cycleIndex = 0;
   repeatCount = 0;
 
@@ -36,6 +39,8 @@ export class HomePage {
   '0, "color": "rgba(255, 0, 0, .3)"},{"from": 120, "to": 260, "color": "rgba(0,120' +
   ', 255, .3)"}, {"from": 260, "to": 360, "color": "rgba(60, 0, 0, .3)"} ]';
 
+  @ViewChild('radialG') radialGauge ;
+  options: Object;
   constructor(
     public navCtrl: NavController,
     public userData: UserData,
@@ -54,6 +59,31 @@ export class HomePage {
     if (this.selectedProgram) {
       this.initScreen();
     }
+    this.options = {
+      minValue: -100,
+      maxValue: 100,
+      animationRule: 'linear',
+      animationDuration: 500,
+      width: 300,
+      height: 300,
+      highlights: false,
+      majorTicks: [-100, -50, 0, 50, 100],
+      minorTicks: 10,
+      exactTicks: true,
+      animatedValue: true
+    }
+    this.options['data-type'] = "linear-gauge";
+  }
+
+  ngOnInit() {
+    
+    //window.setInterval(() => {
+     //this.value = -100 + Math.random() * 200;
+     // Object.assign(this.options, {
+      //  colorPlate: 'green'
+      //});
+    //}, 1000);
+    
   }
 
   initScreen() {
@@ -70,6 +100,7 @@ export class HomePage {
   // ben toplam cycle süresini hesaplayıp, buna göre 1 birime karşılık gelen ms değerini kullanmalıyım.
 
   increaseTimer() {
+
     let ratio = CycleModel.getRatio(this.selectedCycle, this.selectedProgram.timeUnit);
     this.value += Math.round(ratio);
 
@@ -114,9 +145,65 @@ export class HomePage {
     }
   }
 
+  gaugeAnimation()
+  {
+    this.value = this.inhaleMin;
+    this.animationDuration = this.value;
+    this.radialGauge.gauge.addListener('animationEnd', function() {
+      console.log( ': animationEnd!');
+        
+    if (this.activeStep == this.stepInhale) {
+       
+        this.activeStep = this.stepHold;
+        this.title = "Inhale";
+        return;
+    }
+
+    if (this.activeStep == this.stepHold) {
+      this.value +=  this.holdMin;
+      this.animaitionDuration = this.holdMin;
+        this.activeStep = this.stepExhale;
+        this.title = "Hold";
+        return;
+    }
+
+    if (this.activeStep == this.stepExhale) {
+      this.value +=  this.exhaleMin;
+      this.animationDuration = this.exhaleMin;
+        this.activeStep = this.stepSustain;
+        this.title = "Exhale";
+        return;
+    }
+
+    if (this.activeStep == this.stepSustain) {
+      this.value +=  this.sustainMin
+      this.animationDuration = this.sustainMin ;
+      this.title = "Sustain";
+        this.completeCycle();
+        return;
+    }
+        });
+
+  }
+
   timer: any;
   start() {
-    this.timer = setInterval(() => { this.increaseTimer(); }, 1000);
+    this.gaugeAnimation();
+   // this.timer = setInterval(() => { this.increaseTimer(); }, 1000);
+   // var type = this.radialGauge.gauge.canvas.element.getAttribute('data-type');
+    if(this.radialGauge)
+    {
+         
+          /*this.radialGauge.gauge.addListener('animate', function(percent, value) {
+              console.log( 'animate : percent : ' + percent + ' value : ' +value );
+          });
+          this.radialGauge.gauge.addListener('beforePlate', function() {
+              console.log( ': animationEnd!');
+          });
+            */
+            
+
+    }
   }
   stop() {
     clearInterval(this.timer);

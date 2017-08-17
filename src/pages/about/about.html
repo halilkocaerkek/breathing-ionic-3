@@ -7,5 +7,21 @@
 </ion-header>
 
 <ion-content padding>
+    <ion-list>
+        <ion-item>
+            <radial-gauge #radialG id="radialG" width="300" height="300" min-value="0" max-value="100" [attr.value]="value" animation-target="plate" animation="true" use-min-path="true" animation-duration="100" [attr.title]="title" animation-rule="linear" [attr.units]="cycleCount"
+                update-value-on-animation="true" value-box="false"></radial-gauge>
+        </ion-item>
+        <ion-item no-lines>
+            <ion-row>
+                <ion-col>
+                    <button ion-button (click)="start()" color="default" block outline>Start</button>
+                </ion-col>
+                <ion-col>
+                    <button ion-button (click)="stop()" color="danger" block outline>Stop</button>
+                </ion-col>
+            </ion-row>
+        </ion-item>
+    </ion-list>
 
 </ion-content>

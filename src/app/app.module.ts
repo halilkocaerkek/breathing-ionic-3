@@ -9,7 +9,7 @@ import { MyApp } from './app.component';
 import { AboutPage } from '../pages/about/about';
 import { ProgramPage } from '../pages/program/program';
 import { ProgramDetailPage } from '../pages/programdetail/programdetail';
-import { CycleDetailPage } from '../pages/cycle-detail-page/cycle-detail-page';
+import { CycleDetailPage } from '../pages/cycle-detail-page/cycle-detail-page'; 
 
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
@@ -54,6 +54,7 @@ import { UserData } from "../providers/user-data";
     StatusBar,
     SplashScreen,
     Tabs,
+    RadialGaugeComponent,
     UserData,
     {
       provide: ErrorHandler,
