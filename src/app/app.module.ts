@@ -2,7 +2,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler, Tabs } from 'ionic-angular';
 import { IonicStorageModule } from '@ionic/storage';
-
+import { NativeAudio } from '@ionic-native/native-audio';
 import { MyApp } from './app.component';
 
 // Pages
@@ -34,6 +34,7 @@ import { UserData } from "../providers/user-data";
     CycleDetailPage,
     LinearGaugeComponent,
     RadialGaugeComponent,
+ 
     TimeEdit
   ],
   imports: [
@@ -55,6 +56,7 @@ import { UserData } from "../providers/user-data";
     SplashScreen,
     Tabs,
     RadialGaugeComponent,
+    NativeAudio,
     UserData,
     {
       provide: ErrorHandler,

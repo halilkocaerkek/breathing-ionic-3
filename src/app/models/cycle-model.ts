@@ -105,7 +105,7 @@ export class CycleModel {
 
     let total: number = (c.inhale + c.hold + c.exhale + c.sustain) * t ;
     if (total > 0) {
-      ratio = 360 / total;
+      ratio = total / total;
     }
     return ratio;
   }

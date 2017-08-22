@@ -30,7 +30,7 @@ window.setInterval(() => {
       this.radialGauge.gauge.addListener('animationEnd', (evt) => this.animationEnd());
       this.animationStarted = true;
     }
-  }
+  } 
   animationEnd() {
     console.log("Animation end");
  

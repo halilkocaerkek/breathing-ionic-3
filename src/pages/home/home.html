@@ -7,8 +7,8 @@
 <ion-content>
 
     <ion-list>
-        <ion-item-divider no-lines color="light">Program : {{programTitle}} </ion-item-divider>
-        <ion-item-divider no-lines color="light">Cycle : {{cycleTitle}} - Repeat : {{repeatCount}} </ion-item-divider>
+        <ion-item-divider no-lines color="light">Program : {{programTitle}} {{status}} </ion-item-divider>
+        <ion-item-divider no-lines color="light">Cycle : {{cycleTitle}} - rc : {{repeatCount}} ci : {{cycleIndex}} v: {{value}} </ion-item-divider>
 
         <ion-item no-lines>
             <!--
@@ -16,10 +16,10 @@
                 border-inner-width="0" border-outer-width="0" border-middle-width="0" highlights="false" value-box-stroke="0" color-value-box-shadow="0" value-box-border-radius="0" value-text-shadow="0" color-value-box-background="transparent" needle="false"></radial-gauge>
             -->
 
-            <radial-gauge #radialG id="radialG" width="300" height="300" min-value="0" max-value="360" major-ticks="false" ticks-angle="360" start-angle="180" stroke-ticks="false" [attr.value]="value" [attr.highlights]="highlights" color-plate="#c5cae9" color-major-ticks="#f5f5f5"
-                [attr.title]="title" highlights-width="30" color-minor-ticks="#ddd" color-numbers="#ccc" color-needle="rgba(240, 128, 128, 1)" color-needle-end="rgba(255, 160, 122, .9)" value-box="false" value-text-shadow="false" color-needle-circle-outer="#c5cae9"
-                valueText="" needle-circle-size="15" needle-circle-outer="false" needle-type="line" needle-start="0" needle-end="99" needle-width="3" borders="false" border-inner-width="0" border-middle-width="0" border-outer-width="0" color-border-outer="#ccc"
-                color-border-outer-end="#ccc" color-needle-shadow-down="#222" animation-target="plate" animation="true" use-min-path="true"   [attr.animation-duration]="animationDuration"  animation-rule="linear" [attr.units]="cycleCount"></radial-gauge>
+            <radial-gauge #radialG id="radialG" width="300" height="300" min-value="0" [attr.max-value]="maxValue" major-ticks="false" ticks-angle="360" start-angle="180" stroke-ticks="false" [attr.value]="value" [attr.highlights]="highlights" color-plate="#c5cae9"
+                color-major-ticks="#f5f5f5" [attr.title]="title" highlights-width="100" color-minor-ticks="#ddd" color-numbers="#ccc" color-needle="rgba(240, 128, 128, 1)" color-needle-end="rgba(255, 160, 122, .9)" value-box="false" value-text-shadow="false"
+                color-needle-circle-outer="#c5cae9" valueText="" needle-circle-size="15" needle-circle-outer="false" needle-type="line" needle-start="0" needle-end="99" needle-width="3" borders="false" border-inner-width="0" border-middle-width="0" border-outer-width="0"
+                color-border-outer="#ccc" color-border-outer-end="#ccc" color-needle-shadow-down="#222" animation-target="needle" animation="false" use-min-path="true" [attr.animation-duration]="animationDuration" animation-rule="linear" [attr.units]="cycleCount"></radial-gauge>
 
         </ion-item>
 
@@ -36,6 +36,26 @@
         <ion-item no-lines>
             <ion-row>
                 <ion-col>
+                    {{inhaleMin}}
+                </ion-col>
+                <ion-col>
+                    {{holdMin}}
+                </ion-col>
+                <ion-col>
+                    {{exhaleMin}}
+                </ion-col>
+                <ion-col>
+                    {{sustainMin}}
+                </ion-col>
+                <ion-col>
+                    {{repeatCount}}
+                </ion-col>
+            </ion-row>
+        </ion-item>
+        <!--
+        <ion-item no-lines>
+            <ion-row>
+                <ion-col>
                     Repeat
                 </ion-col>
                 <ion-col>
@@ -49,11 +69,13 @@
                 </ion-col>
             </ion-row>
         </ion-item>
+        -->
         <ion-item no-lines *ngIf="selectedProgram">
             <ion-row *ngFor="let item of selectedProgram.items; let i = index">
+
                 <ion-col>
                     {{item.repeat}}
-                    <span *ngIf="index == cycleIndex">{{repeatCount}}</span>
+                    <span *ngIf="i == cycleIndex">*</span>
                 </ion-col>
                 <ion-col>
                     {{getPattern(item.cycle)}}
@@ -66,6 +88,7 @@
                 </ion-col>
             </ion-row>
         </ion-item>
+        <!--
         <ion-item no-lines>
             <ion-row>
                 <ion-col>
@@ -100,5 +123,6 @@
                 </ion-col>
             </ion-row>
         </ion-item>
+        -->
     </ion-list>
 </ion-content>
