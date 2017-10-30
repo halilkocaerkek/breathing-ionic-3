@@ -1,5 +1,12 @@
 # Breathing Exercise App
 
+* Ionic 3, angular 4, typescript
+
+simple breating exercise application.
+
+You can watch demos from the link below.
+https://drive.google.com/file/d/0b_mkwtybgaylcmzacw13sjvtrvu/view
+
 ## Data Model
 
 ### Program
