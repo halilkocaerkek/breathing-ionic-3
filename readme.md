@@ -1,6 +1,6 @@
 # Breathing Exercise App
 
-* Ionic 3, angular 4, typescript
+* Ionic 3, angular 4, Typescript
 
 simple breating exercise application.
 
