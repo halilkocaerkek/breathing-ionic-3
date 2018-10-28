@@ -1,8 +1,7 @@
 {
-  "name": "b2",
-  "app_id": "",
-  "type": "ionic-angular",
+  "name": "Breating",
   "integrations": {
     "cordova": {}
-  }
+  },
+  "type": "ionic-angular"
 }

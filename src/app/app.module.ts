@@ -1,45 +1,39 @@
-﻿import { NgModule, ErrorHandler } from '@angular/core';
+import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { IonicApp, IonicModule, IonicErrorHandler, Tabs } from 'ionic-angular';
-import { IonicStorageModule } from '@ionic/storage';
-import { NativeAudio } from '@ionic-native/native-audio';
+import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
+import {GaugesModule} from 'ng-canvas-gauges/lib';
 
-// Pages
 import { AboutPage } from '../pages/about/about';
-import { ProgramPage } from '../pages/program/program';
-import { ProgramDetailPage } from '../pages/programdetail/programdetail';
-import { CycleDetailPage } from '../pages/cycle-detail-page/cycle-detail-page'; 
 
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-
-// components
+import { ProgramDetailPage } from '../pages/programdetail/programdetail';
+import { CycleDetailPage } from '../pages/cycle-detail-page/cycle-detail-page';
 import { TimeEdit } from '../components/time-edit/time-edit';
-
-import { LinearGaugeComponent, RadialGaugeComponent } from '../../node_modules/ng-canvas-gauges/component';
-import { UserData } from "../providers/user-data";
+import { IonicStorageModule } from '@ionic/storage';
+import { UserData } from '../providers/user-data';
+import { NativeAudio } from '@ionic-native/native-audio';
+import { ProgramPage } from '../pages/program/program';
 
 @NgModule({
   declarations: [
     MyApp,
     AboutPage,
     ProgramPage,
-    HomePage,
-    TabsPage,
     ProgramDetailPage,
     CycleDetailPage,
-    LinearGaugeComponent,
-    RadialGaugeComponent,
- 
-    TimeEdit
-  ],
+    HomePage,
+    TabsPage,
+  TimeEdit  ],
   imports: [
-    BrowserModule, IonicModule.forRoot(MyApp),
-    IonicStorageModule.forRoot()
+    BrowserModule,
+    GaugesModule,
+    IonicStorageModule.forRoot(),
+    IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -47,21 +41,20 @@ import { UserData } from "../providers/user-data";
     AboutPage,
     ProgramPage,
     HomePage,
-    TabsPage,
-    ProgramDetailPage,
+    TabsPage, TimeEdit,ProgramDetailPage,
     CycleDetailPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    Tabs,
-    RadialGaugeComponent,
     NativeAudio,
     UserData,
     {
       provide: ErrorHandler,
       useClass: IonicErrorHandler
-    }
+    },
+    {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
-export class AppModule { }
+export class AppModule {} 
+  

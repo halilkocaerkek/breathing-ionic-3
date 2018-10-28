@@ -1,4 +1,4 @@
-import {CycleModel} from "./Cycle-model";
+import {CycleModel} from "./cycle-model";
 export class GaugeModel {
 
     public highlights : string;
